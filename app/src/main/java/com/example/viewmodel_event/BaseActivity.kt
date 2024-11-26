@@ -17,22 +17,20 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
     lateinit var binding: VB
 
     /**
-     * onCreate
+     * onCreate()에서 동작 | Data Setting
      */
     abstract fun setData()
     /**
-     * onCreate
+     * onCreate()에서 동작 | Observer Setting
      */
     abstract fun setObserver()
     /**
-     * onCreate
+     * onCreate()에서 동작 | Listener Setting
      */
     abstract fun setListener()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = DataBindingUtil.setContentView(this, layoutId)
         binding.apply {
             binding.setVariable(BR.viewModel, viewModel)
@@ -41,10 +39,6 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
         setData()
         setObserver()
         setListener()
-    }
-
-    private fun setDataBinding(){
-
     }
 
     fun showToast(text: String){

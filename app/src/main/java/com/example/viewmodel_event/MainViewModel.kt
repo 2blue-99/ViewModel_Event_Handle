@@ -15,10 +15,10 @@ class MainViewModel: BaseViewModel() {
     }
 
     fun onClickToast(){
-        makeEvent(MyEvent.ShowToast("기모띠"))
+        makeEvent(MyEvent.ShowToast("Test"))
     }
 
     fun onClickBack(){
-
+        makeEvent(MyEvent.MovePage(R.id.testestest))
     }
 }

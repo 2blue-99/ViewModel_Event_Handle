@@ -2,15 +2,15 @@ package com.example.viewmodel_event
 
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.navigation.findNavController
 import com.example.viewmodel_event.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+
     override val layoutId: Int = R.layout.activity_main
     override val viewModel: MainViewModel by viewModels()
 
     override fun setData() {
-
-
 
     }
 
@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 when(event){
                     is MyEvent.ShowToast -> { showToast(event.message) }
                     is MyEvent.ShowPopup -> { showDialog(event.message) }
-                    is MyEvent.MovePage -> {  }
+                    is MyEvent.MovePage -> { findNavController(event.id) }
                     else -> {  }
                 }
             }
