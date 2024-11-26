@@ -1,25 +1,34 @@
 package com.example.viewmodel_event
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.viewmodel_event.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+    override val layoutId: Int = R.layout.activity_main
+    override val viewModel: MainViewModel by viewModels()
 
-    private lateinit var binding: ActivityMainBinding
-    private val mainViewModel: MainViewModel by viewModels()
+    override fun setData() {
+        binding.viewModel = viewModel
+    }
 
-
-    val name = "이푸름"
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.apply {
-            lifecycleOwner = this@MainActivity
-            binding.viewModel = mainViewModel
+    override fun setObserver() {
+        repeatOnStarted {
+            viewModel.eventFlow.collect { event ->
+                Log.e("TAG", "event : $event", )
+                when(event){
+                    is MyEvent.ShowToast -> { showToast(event.message) }
+                    is MyEvent.ShowPopup -> { showDialog(event.message) }
+                    is MyEvent.MovePage -> {  }
+                    else -> {  }
+                }
+            }
         }
+    }
+
+    override fun setListener() {
+
     }
 }
