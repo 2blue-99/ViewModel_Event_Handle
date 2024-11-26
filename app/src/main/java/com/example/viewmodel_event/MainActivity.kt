@@ -1,9 +1,7 @@
 package com.example.viewmodel_event
 
-import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.databinding.DataBindingUtil
 import com.example.viewmodel_event.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
@@ -11,7 +9,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override val viewModel: MainViewModel by viewModels()
 
     override fun setData() {
-        binding.viewModel = viewModel
+
+
+
     }
 
     override fun setObserver() {

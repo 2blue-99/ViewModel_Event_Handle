@@ -35,10 +35,9 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
 
         binding = DataBindingUtil.setContentView(this, layoutId)
         binding.apply {
-//            binding.setVariable(BR.viewModel, this@BaseActivity)
+            binding.setVariable(BR.viewModel, viewModel)
             lifecycleOwner = this@BaseActivity
         }
-
         setData()
         setObserver()
         setListener()
