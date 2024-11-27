@@ -45,9 +45,15 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
 
-    fun showDialog(popupContent: PopupContent, callback: () -> Unit = {}){
+    fun showDialog(event: MyEvent.ShowPopup){
         AlertDialog.Builder(this)
-            .setTitle(popupContent.name)
+            .setTitle(event.content.name)
+            .setPositiveButton("확인"){ dialog, which ->
+                event.tryEmit(true)
+            }
+            .setNegativeButton("취소"){ dialog, which ->
+                event.cancel()
+            }
             .show()
     }
 }

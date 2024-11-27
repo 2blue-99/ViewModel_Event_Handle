@@ -22,7 +22,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.onClickPopup()}"
+            android:onClick="@{() -> viewModel.onClickLogout()}"
             android:text="팝업창" />
 
         <Button

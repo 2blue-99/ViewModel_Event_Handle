@@ -20,7 +20,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 Log.e("TAG", "event : $event", )
                 when(event){
                     is MyEvent.ShowToast -> { showToast(event.message) }
-                    is MyEvent.ShowPopup -> { showDialog(event.message) }
+                    is MyEvent.ShowPopup -> { showDialog(event) }
                     is MyEvent.MovePage -> { findNavController(event.id) }
                     else -> {  }
                 }
